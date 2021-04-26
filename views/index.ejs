@@ -1,0 +1,214 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="css/Style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <section id="nav-bar">
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.jpeg"> </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="report">Report</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <div id="slider">
+        <div id="headerSlider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#headerSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#headerSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#headerSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="covid.jpg" class="d-block img-fluid" alt="...">
+                    <div class="carousel-caption">
+                        <h5> Pandemics </h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="data.jpg" class="d-block img-fluid" alt="...">
+                    <div class="carousel-caption">
+                        <h5> Real time data </h5>
+                    </div>
+                </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#headerSlider" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#headerSlider" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+        </div>
+
+    </div>
+    <section id="Dashboard">
+        <div class="container">
+            <h1 class="text-align-center"> Dashboard</h1>
+            <img src="construct.png">
+        </div>
+
+    </section>
+
+
+    <section id="Home">
+
+        <form action="/riskModel/predict" method="POST">
+            <h2 text-align="center"> Are you a Medical Professional or Researcher? </h2>
+            Yes: <input type="radio" id="status" name="status" value="yes"> No: <input type="radio" id="status" name="status" value="no">
+
+            </br>
+            </br>
+            <div>
+                <p> Do you want to report a new virus </p>
+                Yes: <input type="radio" id="status2" name="status2" value="yes"> No: <input type="radio" id="status2" name="status2" value="no">
+                <div id="virYes">
+                    </br>
+                    How many cases have you encountered: <input placeholder="Number of cases" type="number" name="idNumber" pattern="[0-9]" />
+                    </br>
+                    </br>
+
+                    What particular symptoms have you noticed? </br>
+                    Fever <input type="checkbox">
+                    </br>
+                    </br>
+                    Cough <input type="checkbox">
+                    </br>
+                    </br>
+                    Flu <input type="checkbox">
+                    </br>
+                    </br>
+                    Maylgia <input type="checkbox">
+                    </br>
+                    </br>
+                    Shortness of breath <input type="checkbox">
+                    </br>
+                    </br>
+                    Other <input placeholder="Other Symptoms" type="text" name="symptoms">
+                    </br>
+                    </br>
+                </div>
+            </div>
+        </form>
+        </br>
+
+        <form action="/zoonoticModel/predict" method="POST">
+            <div id="medYes">
+                <!-- 
+                'Virus family':user_data[1],
+        'DNA(0)/RNA(1)':user_data[2],
+        'Virus genus':user_data[3],
+        'Average genome length (Nucleotides)':user_data[4],
+        'Replication in the cytoplasm (True:1)':user_data[5],
+        'Vector-borne or not (True:1)':user_data[6],
+        'enveloped/non-enveloped (True:1)':user_data[7],
+        'vSegmentedTF (True:1)':user_data[8], -->
+                <label for="vfamily">What is the family of the virus you detected?</label>
+                <input type="text" id="vfamily" name="vfamily"><br><br>
+
+
+                <label for="gmaterial">): Is the genetic material of the virus RNA or DNA? (Please enter 1 for RNA and 0
+                    for DNA)</label>
+
+
+
+                <input type="number" min="0" max="1" id="gmaterial" name="gmaterial"><br><br>
+
+                <label for="gfamily">What is the genus of the virus you detected?</label>
+                <input type="text" id="gfamily" name="gfamily"><br><br>
+
+
+
+                <label for="avglength">What is the average genome length of the detected virus? </label>
+                <input type="number" id="avglength" name="avglength"><br><br>
+
+                <label for="creplication">Does the virus have cytoplasmic replication? (Please enter 1 for yes and 0 for
+                    no)</label>
+                <input type="number" min="0" max="1" id="creplication" name="creplication"><br><br>
+
+
+
+                <label for="vvector">Is the virus vector-borne or not? (Please enter 1 for yes and 0 for no)</label>
+                <input type="number" min="0" max="1" id="vvector" name="vvector"><br><br>
+
+
+
+                <label for="venveloped">Is the genome of the virus enveloped or non-enveloped(Please enter 1 for yes and
+                    0 for no)</label>
+                <input type="number" min="0" max="1" id="venveloped" name="venveloped"><br><br>
+
+
+
+                <label for="sgnome">Does the virus have a segmented genome or not? (Please enter 1 for yes and 0 for
+                    no)</label>
+                <input type="number" min="0" max="1" id="sgnome" name="sgnome"><br><br>
+
+
+                <input type="submit" value="submit">
+            </div>
+        </form>
+
+    </section>
+    </br>
+    </br>
+    </br>
+    </br>
+    <script>
+        $(document).ready(function() {
+            $("#medYes").hide();
+            $("input[type='radio']").click(function() {
+                $("#medYes").hide();
+                var radioValue = $("input[name='status']:checked").val();
+                if (radioValue == 'yes')
+                    $("#medYes").show();
+
+
+            });
+        });
+        $(document).ready(function() {
+            $("#virYes").hide();
+            $("input[type='radio']").click(function() {
+                $("#virYes").hide();
+                var radioValue = $("input[name='status2']:checked").val();
+                if (radioValue == 'yes')
+                    $("#virYes").show();
+
+
+            });
+        });
+    </script>
+</body>
+</br>
+
+</html>
